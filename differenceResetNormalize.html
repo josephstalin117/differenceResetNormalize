@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>关于normalize.css和reset.css之间的区别</title>
+
+<style type="text/css">
+@charset "utf-8";
+ 
+html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+ 
+body{
+    color:#444;
+    font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+    font-size:13px;
+    line-height:1.5em;
+    padding:1em;
+    margin:auto;
+    max-width:42em;
+    background:#fefefe;
+}
+ 
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+ 
+h1 {
+    color: #000000;
+    font-size: 28px;
+}
+ 
+h2 {
+    border-bottom: 2px solid #CCCCCC;
+    color: #000000;
+    font-size: 24px;
+}
+ 
+h3 {
+    border-bottom: 2px solid #CCCCCC;
+    font-size: 18px;
+}
+ 
+h4 {
+    font-size: 16px;
+}
+ 
+h5 {
+    font-size: 14px;
+}
+ 
+h6 {
+    color: #777777;
+    background-color: inherit;
+    font-size: 14px;
+}
+ 
+hr {
+    height: 0.2em;
+    border: 0;
+    color: #CCCCCC;
+    background-color: #CCCCCC;
+}
+ 
+p, blockquote, ul, ol, dl, li, table, pre {
+    margin: 15px 0;
+}
+ 
+p{
+    margin:1em 0;
+}
+ 
+pre {
+    background-color: #F8F8F8;   
+    border: 1px solid #CCCCCC;
+    border-radius: 3px;
+    overflow: auto;
+    padding: 5px;
+}
+ 
+pre code {
+    background-color: #F8F8F8;
+    border: none;   
+    padding: 0;
+}
+ 
+code {
+    font-family: Consolas, Monaco, Andale Mono, monospace;
+    background-color:#F8F8F8;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px;
+    padding: 0 0.2em;
+    line-height: 1;
+}
+ 
+pre > code {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+ 
+ 
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+ 
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+ 
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+ 
+blockquote{
+    color:#666666;
+    margin:0;
+    padding-left: 3em;
+    border-left: 0.5em #EEE solid;
+}
+ 
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+ 
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; max-width:100%;}
+ 
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+ 
+@media only screen and (min-width: 480px) {
+    body{font-size:14px;}
+}
+ 
+@media only screen and (min-width: 768px) {
+    body{font-size:16px;}
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>关于normalize.css和reset.css之间的区别</h1>
+
+<h2>Indrotuction</h2>
+
+<p><strong>本文只列出reset之间的区别～</strong><br/>
+<strong>顺序按normalize.css从上到下～</strong><br/>
+<strong>本文约定R代表52framework，N代表normalize</strong>
+<strong>reset中未涉及伪类</strong></p>
+
+<ol>
+<li><a href="#HDD">HTML5 display definitions</a><br/></li>
+<li><a href="#B">Base</a><br/></li>
+<li><a href="#L">Links</a></li>
+<li><a href="#T">Typography</a><br/></li>
+<li><a href="#E">Embedded</a></li>
+<li><a href="#F">Figures</a></li>
+<li><a href="#Fo">Forms</a> </li>
+<li><a href="#Ta">Tables</a></li>
+</ol>
+
+<h2 id="HDD">HTML5 display definitions</h2>  
+
+<ul>
+<li><p><strong>main</strong><br/>
+属性R未指定  </p></li>
+<li><p><strong>cavas</strong>  </p></li>
+</ul>
+
+<p>N:    </p>
+
+<pre><code>audio,
+canvas,
+video {
+    display: inline-block;
+}
+</code></pre>
+
+<p>R：  </p>
+
+<pre><code>canvas{
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}
+canvas { 
+  display:block;
+}
+</code></pre>
+
+<ul>
+<li><strong>audio, video</strong><br/></li>
+</ul>
+
+<p>N:</p>
+
+<pre><code>audio,
+canvas,
+video {
+    display: inline-block;
+}  
+</code></pre>
+
+<p>R:</p>
+
+<pre><code>audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}
+</code></pre>
+
+<ul>
+<li><strong>audio:not [hidden]</strong><br/>
+R中未指定<br/></li>
+</ul>
+
+<h2 id="B">Base</h2>
+
+<ul>
+<li><strong>html,body</strong><br/></li>
+</ul>
+
+<p>N:<br/>
+    html {
+        font-family: sans-serif; /* 1 <em>/
+        -webkit-text-size-adjust: 100%; /</em> 2 <em>/
+        -ms-text-size-adjust: 100%; /</em> 2 */
+    }</p>
+
+<pre><code>body {
+    margin: 0;
+}    
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>html, body{
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}
+</code></pre>
+
+<h2 id="L">Link</h2>
+
+<p>a:focus,a:active,a:hover;R中未涉及～  </p>
+
+<h2 id="T">Typography</h2>  
+
+<ul>
+<li><strong>h1</strong><br/></li>
+</ul>
+
+<p>N:  </p>
+
+<pre><code>h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>h1, h2, h3, h4, h5, h6{
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}
+</code></pre>
+
+<ul>
+<li><strong>addr</strong><br/></li>
+</ul>
+
+<p>N:</p>
+
+<pre><code>abbr[title] {
+    border-bottom: 1px dotted;
+}
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>abbr{
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+abbr[title], dfn[title] {
+   border-bottom:1px dotted #000;
+    cursor:help;
+}
+</code></pre>
+
+<ul>
+<li><strong>b,strong</strong><br/></li>
+</ul>
+
+<p>N:  </p>
+
+<pre><code>b,strong {
+    font-weight: bold;
+}
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>b,strong{
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}
+</code></pre>
+
+<ul>
+<li><strong>dfn</strong><br/></li>
+</ul>
+
+<p>N:  </p>
+
+<pre><code>dfn {
+    font-style: italic;
+}
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>dfn {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}
+abbr[title], dfn[title] {
+    border-bottom:1px dotted #000;
+    cursor:help;
+}
+</code></pre>
+
+<ul>
+<li><strong>hr</strong><br/></li>
+</ul>
+
+<p>N:  </p>
+
+<pre><code>hr{
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>hr {
+    display:block;
+    height:1px;
+    border:0;   
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+</code></pre>
+
+<ul>
+<li><strong>mark</strong><br/></li>
+</ul>
+
+<p>N:  </p>
+
+<pre><code>mark {
+    background: #ff0;
+    color: #000;
+}
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>mark {
+    background-color:#ff9;
+    color:#000; 
+    font-style:italic;
+    font-weight:bold;
+}
+</code></pre>
+
+<ul>
+<li><strong>code,kbd,pre,samp</strong><br/></li>
+</ul>
+
+<p>N:</p>
+
+<pre><code>code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    font-size: 1em;
+}
+pre {
+    white-space: pre-wrap;
+}
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>code,
+kbd,
+pre,
+samp{
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+</code></pre>
+
+<p>}</p>
+
+<ul>
+<li><strong>q</strong><br/></li>
+</ul>
+
+<p>N:  </p>
+
+<pre><code>q {
+    quotes: &quot;\201C&quot; &quot;\201D&quot; &quot;\2018&quot; &quot;\2019&quot;;
+}
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>q{
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}
+q:before, q:after {
+    content:&#39;&#39;;
+    content:none;
+}
+</code></pre>
+
+<ul>
+<li><strong>small</strong><br/></li>
+</ul>
+
+<p>N:  </p>
+
+<pre><code>small {
+    font-size: 80%;
+}
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>small {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}
+</code></pre>
+
+<ul>
+<li><strong>sub, sup</strong><br/></li>
+</ul>
+
+<p>N:</p>
+
+<pre><code>sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>sub, sup {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}  
+</code></pre>
+
+<h2 id="E">Embedded content</h2>
+
+<ul>
+<li><strong>img</strong></li>
+</ul>
+
+<p>N:  </p>
+
+<pre><code>img {
+    border: 0;
+}
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>img {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}
+</code></pre>
+
+<ul>
+<li><strong>svg:not(:root)</strong></li>
+</ul>
+
+<p>未在reset中体现  </p>
+
+<h2 id="F">Figures</h2>  
+
+<ul>
+<li><strong>figure</strong><br/></li>
+</ul>
+
+<p>N:  </p>
+
+<pre><code>figure {
+    margin: 0;
+}
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>figure{ 
+  display:block;
+}
+</code></pre>
+
+<h2 id="Fo">Forms</h2>  
+
+<ul>
+<li><p><strong>fieldset</strong>
+N:  </p>
+
+<p>fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}</p></li>
+</ul>
+
+<p>R:  </p>
+
+<pre><code>fieldset{
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}
+</code></pre>
+
+<ul>
+<li><strong>legend</strong><br/></li>
+</ul>
+
+<p>N:  </p>
+
+<pre><code>legend {
+    border: 0; /* 1 */
+    padding: 0; /* 2 */
+} 
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>legend{
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}
+</code></pre>
+
+<ul>
+<li><strong>button,input,select,textarea</strong><br/></li>
+</ul>
+
+<p>N:  </p>
+
+<pre><code>button,
+input,
+select,
+textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 2 */
+    margin: 0; /* 3 */
+}
+button,input{
+    line-height: normal;
+}
+button,select {
+    text-transform: none;
+}
+button,
+html input[type=&quot;button&quot;], /* 1 */
+input[type=&quot;reset&quot;],
+input[type=&quot;submit&quot;] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+}
+button[disabled],html input[disabled] {
+    cursor: default;
+}
+input[type=&quot;checkbox&quot;],input[type=&quot;radio&quot;] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+}
+input[type=&quot;search&quot;] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+input[type=&quot;search&quot;]::-webkit-search-cancel-button,
+input[type=&quot;search&quot;]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+button::-moz-focus-inner,input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>input, select {
+    vertical-align:middle;
+}
+input, select {
+    vertical-align:middle;
+}
+</code></pre>
+
+<h2 id="Ta">Tables</h2>
+
+<p>N:  </p>
+
+<pre><code>table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+</code></pre>
+
+<p>R:  </p>
+
+<pre><code>table{
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}
+</code></pre>
+
+</body>
+
+</html>
+
